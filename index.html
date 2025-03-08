@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tamil Keyboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --primary-blue: #00aaff;
+      --bg-black: #000;
+    }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg-black);
+      color: var(--primary-blue);
+      font-family: 'Nirmala UI', 'Noto Sans Tamil', Latha, sans-serif;
+      overflow: hidden;
+    }
+    /* Main container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      padding: 10px;
+    }
+    /* Header with extra top space */
+    .header {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: var(--primary-blue);
+      height: 15vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Text area container */
+    .text-area-container {
+      flex: 0 0 20%;
+      text-align: center;
+    }
+    textarea {
+      width: 90%;
+      height: 60%;
+      background: var(--bg-black);
+      border: 2px solid var(--primary-blue);
+      color: var(--primary-blue);
+      padding: 8px;
+      font-size: 1.4em;
+      border-radius: 6px;
+      resize: none;
+    }
+    .buttons-container {
+      margin-top: 5px;
+    }
+    .bf {
+      font-size: 1.1em;
+      padding: 6px 12px;
+      background: var(--bg-black);
+      border: 2px solid var(--primary-blue);
+      color: var(--primary-blue);
+      border-radius: 4px;
+      margin: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .bf:hover {
+      background: var(--primary-blue);
+      color: var(--bg-black);
+      transform: translateY(-2px);
+    }
+    /* Keyboard container split into two columns */
+    .keyboard-container {
+      flex: 1;
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .left-keys, .right-keys {
+      background: var(--bg-black);
+      border: 2px solid var(--primary-blue);
+      border-radius: 6px;
+      padding: 8px;
+      overflow-y: auto;
+    }
+    .left-keys {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .right-keys {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    /* Group titles */
+    .group-title {
+      text-align: center;
+      margin-bottom: 4px;
+      font-size: 1.2em;
+      border-bottom: 1px solid var(--primary-blue);
+      padding-bottom: 2px;
+    }
+    /* Grid layouts within groups */
+    .grid {
+      display: grid;
+      gap: 4px;
+    }
+    /* Left keys – consonants grid */
+    .consonants .grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    /* Left keys – vowels grid */
+    .vowels .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    /* Right keys – diacritics grid */
+    .diacritics .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    /* Right keys – special characters grid */
+    .special .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    /* Right keys – numerals grid */
+    .numerals .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    /* Right keys – extended symbols grid */
+    .extended .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .key button {
+      width: 100%;
+      height: 60px;
+      background: var(--bg-black);
+      border: 2px solid var(--primary-blue);
+      border-radius: 4px;
+      color: var(--primary-blue);
+      font-size: 2em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .key button:hover {
+      background: var(--primary-blue);
+      color: var(--bg-black);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body onLoad="document.getElementById('bar').focus()">
+  <div class="container">
+    <div class="header">Tamil Keyboard</div>
+    <div class="text-area-container">
+      <textarea id="bar" spellcheck="false"></textarea>
+      <div class="buttons-container">
+        <button class="bf" onclick="reset()">Clear</button>
+        <button class="bf" onclick="copyText()">Copy</button>
+        <button class="bf" onclick="save()">Save</button>
+        <button class="bf" onclick="alpha(' ')">Space</button>
+      </div>
+    </div>
+    <div class="keyboard-container">
+      <!-- Left Column: Main Letters -->
+      <div class="left-keys">
+        <div class="group consonants">
+          <div class="group-title">Consonants</div>
+          <div class="grid">
+            <div class="key"><button onclick="alpha('க')">க</button></div>
+            <div class="key"><button onclick="alpha('ங')">ங</button></div>
+            <div class="key"><button onclick="alpha('ச')">ச</button></div>
+            <div class="key"><button onclick="alpha('ஞ')">ஞ</button></div>
+            <div class="key"><button onclick="alpha('ட')">ட</button></div>
+            <div class="key"><button onclick="alpha('ண')">ண</button></div>
+            <div class="key"><button onclick="alpha('த')">த</button></div>
+            <div class="key"><button onclick="alpha('ந')">ந</button></div>
+            <div class="key"><button onclick="alpha('ப')">ப</button></div>
+            <div class="key"><button onclick="alpha('ம')">ம</button></div>
+            <div class="key"><button onclick="alpha('ய')">ய</button></div>
+            <div class="key"><button onclick="alpha('ர')">ர</button></div>
+            <div class="key"><button onclick="alpha('ல')">ல</button></div>
+            <div class="key"><button onclick="alpha('வ')">வ</button></div>
+            <div class="key"><button onclick="alpha('ழ')">ழ</button></div>
+            <div class="key"><button onclick="alpha('ள')">ள</button></div>
+            <div class="key"><button onclick="alpha('ற')">ற</button></div>
+            <div class="key"><button onclick="alpha('ன')">ன</button></div>
+            <div class="key"><button onclick="alpha('ஜ')">ஜ</button></div>
+            <div class="key"><button onclick="alpha('ஶ')">ஶ</button></div>
+            <div class="key"><button onclick="alpha('ஷ')">ஷ</button></div>
+            <div class="key"><button onclick="alpha('ஸ')">ஸ</button></div>
+            <div class="key"><button onclick="alpha('ஹ')">ஹ</button></div>
+          </div>
+        </div>
+        <div class="group vowels">
+          <div class="group-title">Vowels</div>
+          <div class="grid">
+            <div class="key"><button onclick="alpha('அ')">அ</button></div>
+            <div class="key"><button onclick="alpha('ஆ')">ஆ</button></div>
+            <div class="key"><button onclick="alpha('இ')">இ</button></div>
+            <div class="key"><button onclick="alpha('ஈ')">ஈ</button></div>
+            <div class="key"><button onclick="alpha('உ')">உ</button></div>
+            <div class="key"><button onclick="alpha('ஊ')">ஊ</button></div>
+            <div class="key"><button onclick="alpha('எ')">எ</button></div>
+            <div class="key"><button onclick="alpha('ஏ')">ஏ</button></div>
+            <div class="key"><button onclick="alpha('ஐ')">ஐ</button></div>
+            <div class="key"><button onclick="alpha('ஒ')">ஒ</button></div>
+            <div class="key"><button onclick="alpha('ஓ')">ஓ</button></div>
+            <div class="key"><button onclick="alpha('ஔ')">ஔ</button></div>
+          </div>
+        </div>
+      </div>
+      <!-- Right Column: Diacritics, Special Symbols, Numerals, Extended Symbols -->
+      <div class="right-keys">
+        <div class="group diacritics">
+          <div class="group-title">Diacritics</div>
+          <div class="grid">
+            <div class="key"><button onclick="alpha('ெ')">ெ</button></div>
+            <div class="key"><button onclick="alpha('ே')">ே</button></div>
+            <div class="key"><button onclick="alpha('ை')">ை</button></div>
+            <div class="key"><button onclick="alpha('ொ')">ொ</button></div>
+            <div class="key"><button onclick="alpha('ோ')">ோ</button></div>
+            <div class="key"><button onclick="alpha('ௌ')">ௌ</button></div>
+            <div class="key"><button onclick="alpha('ௗ')">ௗ</button></div>
+            <div class="key"><button onclick="alpha('ா')">ா</button></div>
+            <div class="key"><button onclick="alpha('ி')">ி</button></div>
+            <div class="key"><button onclick="alpha('ீ')">ீ</button></div>
+            <div class="key"><button onclick="alpha('ு')">ு</button></div>
+            <div class="key"><button onclick="alpha('ூ')">ூ</button></div>
+          </div>
+        </div>
+        <div class="group special">
+          <div class="group-title">Special</div>
+          <div class="grid">
+            <div class="key"><button onclick="alpha('்')">்</button></div>
+            <div class="key"><button onclick="alpha('ஂ')">ஂ</button></div>
+            <div class="key"><button onclick="alpha('ஃ')">ஃ</button></div>
+            <div class="key"><button onclick="alpha('ௐ')">ௐ</button></div>
+          </div>
+        </div>
+        <div class="group numerals">
+          <div class="group-title">Numerals</div>
+          <div class="grid">
+            <div class="key"><button onclick="alpha('௦')">௦</button></div>
+            <div class="key"><button onclick="alpha('௧')">௧</button></div>
+            <div class="key"><button onclick="alpha('௨')">௨</button></div>
+            <div class="key"><button onclick="alpha('௩')">௩</button></div>
+            <div class="key"><button onclick="alpha('௪')">௪</button></div>
+            <div class="key"><button onclick="alpha('௫')">௫</button></div>
+            <div class="key"><button onclick="alpha('௬')">௬</button></div>
+            <div class="key"><button onclick="alpha('௭')">௭</button></div>
+            <div class="key"><button onclick="alpha('௮')">௮</button></div>
+            <div class="key"><button onclick="alpha('௯')">௯</button></div>
+          </div>
+        </div>
+        <div class="group extended">
+          <div class="group-title">Extended</div>
+          <div class="grid">
+            <div class="key"><button onclick="alpha('௰')">௰</button></div>
+            <div class="key"><button onclick="alpha('௱')">௱</button></div>
+            <div class="key"><button onclick="alpha('௲')">௲</button></div>
+            <div class="key"><button onclick="alpha('௳')">௳</button></div>
+            <div class="key"><button onclick="alpha('௴')">௴</button></div>
+            <div class="key"><button onclick="alpha('௵')">௵</button></div>
+            <div class="key"><button onclick="alpha('௹')">௹</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function copyText() {
+      var ta = document.getElementById('bar');
+      ta.select();
+      try { document.execCommand('copy'); } 
+      catch (err) { console.error("Copy failed", err); }
+    }
+    function reset() { document.getElementById('bar').value = ""; }
+    function alpha(val) {
+      var ta = document.getElementById('bar');
+      ta.value += val;
+      ta.focus();
+    }
+    function save() {
+      var text = document.getElementById('bar').value;
+      var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      var url = window.URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "tamil_text.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
+
